@@ -6,8 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Sidebar from "../global/Sidebar";
-import Topbar from "../global/Topbar";
+
 
 const Bar = () => {
   return (
@@ -17,20 +16,20 @@ const Bar = () => {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
-                    image=""
+                    height="200"
+                    image={`../../assets/bar.jpg`}
                     alt="green iguana"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h4" component="div">
+                    <Typography gutterBottom variant="h4" fontWeight="600" component="div">
                         Mock Data
                     </Typography>
                     <Typography variant="h5" color="text.secondary">
-                        This bar graphs represents the demand of food items across different countries.
+                        This bar graph represents the demand of food items across selected countries.
                     </Typography>
                 </CardContent>
             </CardActionArea>
-        </Card>
+    </Card>
     {/* //   <Box height="75vh">
     //     <BarChart />
     //   </Box> */}
