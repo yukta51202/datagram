@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 // Allows to have links when we click on navigation bar
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // Styles file for react pro sidebar
 import "react-pro-sidebar/dist/css/styles.css";
 import { colorModeContext, tokens } from "../../theme";
@@ -20,11 +20,14 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
+const withouSidebarRoutes = ["/", "/Register"];
+
 // title, to, icon, selected, setSelected are the properties
 // this is crreated so that we need not write this coe for every item again and again
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
     <MenuItem
       // set the selected item as active
@@ -48,6 +51,10 @@ const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
     // Represents which item or page is selected currently
     const [selected, setSelected] = useState("Dashboard");
+
+    const { pathname } = useLocation();
+    if (pathname === "/") return null;
+    if (pathname === "/Register") return null;
   
     return (
       <Box

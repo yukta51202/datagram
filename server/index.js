@@ -1,61 +1,25 @@
-const express  = require("express")
-const cors = require("cors");
-const mongoose = require("mongoose");
-// const userRoutes = require("./server/routes/userRoutes");
-// const messageRoute = require("./server/routes/messagesRoutes");
-// const socket  = require("socket.io");
-// const path = require("path");
-require('dotenv').config();
-
+require('dotenv').config({
+    path: '../.env' 
+})
+// importing the modules
+const express = require("express");
 const app = express();
-require("dotenv").config();
+const cors = require("cors");
+const connection = require("./db");
+const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
 
-app.use(cors());
+// database connection
+connection();
+
+// setting up middlewares
 app.use(express.json());
+app.use(cors());
 
-// app.use("/api/auth",userRoutes);
-// app.use("/api/messages",messageRoute);
+// routes
+// app.use("/api/users", userRoutes);
+// app.use("/api/auth", authRoutes);
 
-mongoose.connect(process.env.MONGO_URI,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-
-}).then(()=>{
-    console.log("DB connection succesfull");
-}).catch((err)=>{
-    console.log(err.message);   
-});
-// if(process.env.NODE_ENV==="production"){
-//     app.use(express.static(path.join(__dirname,'/public/build')));
-
-//     app.get('*',(req,res)=>{
-//         res.sendFile(path.join(__dirname, 'public','build','index.html'));
-//     })
-// }else{
-//     app.get('/',(req,res)=>{
-//         res.send('APi running');
-//     })
-// }
-const server = app.listen(process.env.PORT ||5000,()=>{
-    console.log(`Server started on Port ${process.env.PORT}`)
-
-});
-// const io = socket(server,{
-//     cors:{
-//         origin:"http://localhost:3000",
-//         credentials:true,
-//     },
-// });
-// global.onlineUsers = new Map();
-// io.on("connection",(socket)=>{
-//     global.chatSocket = socket;
-//     socket.on("add-user",(userId)=>{
-//    onlineUsers.set(userId,socket.id);
-//     });
-//     socket.on("send-msg",(data)=>{
-//         const sendUserSocket = onlineUsers.get(data.to);
-//         if(sendUserSocket){
-//             socket.to(sendUserSocket).emit("msg-recieve",data.message);
-//         }
-//     })
-// })
+const port = process.env.PORT || 4000;
+app.listen(port, console.log(`Listening on port ${port}...`));
+console.log(process.env.MONGO_URI);

@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/d-logo.png'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import expand from '../assets/expand.svg'
 import wiki from '../assets/wiki.svg'
 import page from '../assets/page.svg'
@@ -9,6 +9,7 @@ import ai from '../assets/ai.svg'
 import target from '../assets/target.svg'
 
 const Navbar = () => {
+  
   return (
     <Container>
     <div className = 'nav'>

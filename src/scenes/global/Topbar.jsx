@@ -8,6 +8,7 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined"
 import SearchIcon from "@mui/icons-material/Search"
+import { useLocation } from "react-router-dom";
 
 const Topbar = () => {
     // grabs the theme
@@ -16,6 +17,10 @@ const Topbar = () => {
     const colors = tokens(theme.palette.mode);
     // toggle different states for the color mode
     const colorMode = useContext(colorModeContext);
+
+    const { pathname } = useLocation();
+    if (pathname === "/") return null;
+    if (pathname === "/Register") return null;
 
     return(
         // Box is a component of material ui like div component which allow us to use css inline
