@@ -95,7 +95,7 @@ const Home = () => {
             <h3> Get started for free. </h3>
             <p> Play around with it first. Pay and add your team later. </p>
           </div>
-          <Link to = "/Register" > 
+          <Link to = "/Login" > 
           <button className='login'> Get Notion free 
             <img src = {arrow} alt = "open-book" width = {20} class = "arr" /> 
           </button>

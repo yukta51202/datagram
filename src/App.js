@@ -11,11 +11,14 @@ import Add from "./scenes/calendar/add";
 import Bar from "./scenes/bar/index"
 import Home from "./components/Home";
 import Register from "./components/Register"
-import AddBarChart from "./scenes/bar/addBarChart";
 import BarChart from "./components/BarChart";
-// import Line from "./scenes/line"
-// import Pie from "./scenes/pie"
-// import Geography from "./scenes/geography"
+import PieChart from "./components/PieChart"
+import LineChart from "./components/LineChart"
+import Line from "./scenes/line"
+import Pie from "./scenes/pie"
+import Geography from "./scenes/geography"
+import GeographyChart from "./components/GeographyChart"
+import Login from "./components/Login"
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -29,15 +32,19 @@ function App() {
               <Topbar />
               <Routes>
                 <Route path = "/" element = {<Home />} />
+                <Route path = "/Login" element = {<Login />} />
                 <Route path = "/Register" element = {<Register />} /> 
                 <Route path = "/dashboard" element = {<Dashboard />} />
                 <Route path = "/team" element = {<Team />} />
                 <Route path = "/add" element = {<Add />} />
                 <Route path = "/bar" element = {<Bar />} />
                 <Route path = "/barChart" element = {<BarChart />} />
-                {/* <Route path = "/pie" element = {<Pie />} /> */}
-                {/* <Route path = "/line" element = {<Line />} /> */}
-                {/* <Route path = "/geography" element = {<Geography />} /> */}
+                <Route path = "/pieChart" element = {<PieChart />} />
+                <Route path = "/pie" element = {<Pie />} />
+                <Route path = "/line" element = {<Line />} />
+                <Route path = "/lineChart" element = {<LineChart />} />
+                <Route path = "/geographyChart" element = {<GeographyChart />} />
+                <Route path = "/geography" element = {<Geography />} />
                 <Route path = "/calendar" element = {<Calendar />} />
               </Routes>
             </main>

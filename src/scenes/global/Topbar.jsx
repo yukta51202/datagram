@@ -21,6 +21,7 @@ const Topbar = () => {
     const { pathname } = useLocation();
     if (pathname === "/") return null;
     if (pathname === "/Register") return null;
+    if (pathname === "/Login") return null;
 
     return(
         // Box is a component of material ui like div component which allow us to use css inline

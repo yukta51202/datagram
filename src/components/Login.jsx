@@ -11,7 +11,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import TextField from '@mui/material/TextField';
 import { Link } from '@mui/material'
 
-const Register = () => {
+const Login = () => {
 
   const [values,setValues] = useState({
     name:"",
@@ -68,8 +68,8 @@ const Register = () => {
   return (
   <>
     <Container>
-      <img src = {login} alt = "login-illustration" width = "700px" class = "log"/>
-      <img src = {girl} alt = "girl" width = "160px" class = "girl"/>
+      <img src = {login} alt = "login-illustration" width = "550px" class = "log"/>
+      <img src = {girl} alt = "girl" width = "125px" class = "girl"/>
       <div class = "reg">
         <div class="card">
             <div class="container">
@@ -77,16 +77,6 @@ const Register = () => {
             </div>
             <div>
                 <form onSubmit = {(event) => handleSubmit(event)}>
-                  <TextField
-                    required
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    placeholder='Name'
-                    type="text"
-                    fullWidth
-                    variant="outlined"
-                  />
                   <TextField
                     required
                     autoFocus
@@ -107,21 +97,11 @@ const Register = () => {
                     fullWidth
                     variant="outlined"
                   />
-                  <TextField
-                    required
-                    autoFocus
-                    margin="dense"
-                    id="rep-password"
-                    placeholder='Confirm Password'
-                    type="password"
-                    fullWidth
-                    variant="outlined"
-                  />
-                    <Button variant="contained" onClick={handleValidation}> Sign Up </Button>  
-                    <Button variant="contained" startIcon={<GoogleIcon />}> Sign up with Google </Button>               
+                    <Button variant="contained" onClick={handleValidation}> Login </Button>   
+                    <Button variant="contained" startIcon={<GoogleIcon />}> Login with Google </Button>          
                 </form>
                 <div class = "msg">
-                      <span> Already have an account? <Link href = "/Login"> Login Here. </Link></span>
+                      <span> Don't have an account? <Link href = "/Register"> Signup Here. </Link></span>
                 </div>  
             </div>
         </div>
@@ -136,17 +116,17 @@ const Container = styled.div`
 .msg{
   font-size: 1rem;
   font-weight: 600;
-  margin: 30px 0px 20px 0px;
+  margin: 40px 0px 20px 0px;
 }
 .girl{
   position: absolute;
-  margin-left: 1065px;
-  margin-top: 300px;
+  margin-left: 1000px;
+  margin-top: 325px;
 }
 .log{
   position: absolute;
-  margin-top: 240px;
-  margin-left: 130px;
+  margin-top: 275px;
+  margin-left: 170px;
   z-index: 1;  
 }
 .logo{
@@ -154,7 +134,7 @@ const Container = styled.div`
 }
 .reg{
   height: 100vh;
-  margin-left: 135px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,7 +168,6 @@ const Container = styled.div`
     }
 
     button{
-      font-family: Rubik;
       font-size: 1rem;
       background-color: #e63946;
       color: white;
@@ -203,4 +182,4 @@ const Container = styled.div`
       }
 `
 
-export default Register
+export default Login;

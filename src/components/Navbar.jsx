@@ -71,7 +71,7 @@ const Navbar = () => {
         <button className = 'dropbtn'> Pricing </button>
         </div>
         <div> 
-          <Link to = "/Register" > 
+          <Link to = "/Login" > 
             <button className='login'> Try Datagram free </button>
             </Link>
         </div>

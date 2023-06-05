@@ -55,6 +55,7 @@ const Sidebar = () => {
     const { pathname } = useLocation();
     if (pathname === "/") return null;
     if (pathname === "/Register") return null;
+    if (pathname === "/Login") return null;
   
     return (
       <Box
