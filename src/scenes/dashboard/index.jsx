@@ -12,10 +12,26 @@ import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+// import jwt from 'jsonwebtoken'
+// import { useEffect, useHistory } from "react";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  // const history = useHistory()
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   if (token) {
+  //     const user = jwt.decode(token)
+  //     if(!user){
+  //       localStorage.removeItem('token')
+  //       history.replace('/')
+  //     } else{
+        
+  //     }
+  //   }
+  // })
 
   return (
     <Box m="20px">

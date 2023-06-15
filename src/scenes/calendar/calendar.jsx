@@ -35,17 +35,20 @@ const Calendar = () => {
     setShowModal(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, selected) => {
     event.preventDefault();
-
-    // setTitle("");
-    // setDesc("");
-    // setEmail("");
-    // handleDateClick();
+    const calendarApi = selected.view.calendar;
+    calendarApi.unselect();
+    if(title){
+      calendarApi.addEvent({
+        title,
+      })
+    }
   }
 
   const handleDateClick = (selected) => {
-    setShowModal(true);
+    const title = prompt("Please enter a new title for your event");
+    // setShowModal(true);
     const calendarApi = selected.view.calendar;
     calendarApi.unselect();
     

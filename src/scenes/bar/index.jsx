@@ -18,8 +18,8 @@ const Bar = () => {
   return (
     <Box m="20px">
         <Header title="Bar Chart" />
-        <Box display = "flex" justifyContent="space-around">
-            <Card sx = {{ maxWidth: 345 }}>
+        <Box display = "flex">
+            <Card sx = {{ maxWidth: 345, m: "20px"}}>
                 <CardActionArea onClick = {navigateBar}>
                     <CardMedia
                         component="img"
@@ -37,20 +37,20 @@ const Bar = () => {
                     </CardContent>
                 </CardActionArea>
             </Card>
-            <Card sx = {{ maxWidth: 345 }}>
+            <Card sx = {{ maxWidth: 345, m: "20px" }}>
                 <CardActionArea onClick = {navigateBar}>
                     <CardMedia
                         component="img"
                         height="200"
-                        image={`../../assets/addIcon.png`}
+                        image={`../../assets/add.jpg`}
                         alt="green iguana"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h4" fontWeight="600" component="div">
-                            Mock Data
+                            Add File
                         </Typography>
                         <Typography variant="h5" color="text.secondary">
-                            This bar graph represents the demand of food items across selected countries.
+                            Submit your file for data visualization and analysis.
                         </Typography>
                     </CardContent>
                 </CardActionArea>

@@ -19,6 +19,7 @@ import foot from '../assets/foot.svg'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import dashboard from '../assets/dashboard.jpg'
 
 const Home = () => {
   return (
@@ -44,7 +45,7 @@ const Home = () => {
             <img src = {ill1} alt = "open-book" width = {800} class = "ill" />
           </div>
           <div class = "roadmap">
-            <img src = {Roadmap} alt = "open-book" width = {1000} />
+            <img src = {dashboard} alt = "open-book" width = {1000} />
           </div>
           <div> 
             <h3> Finally, all your work in one place! </h3>
@@ -55,7 +56,7 @@ const Home = () => {
                 <img src = {wiki} alt = "open-book" width = {50} />
                 <h4>  Wikis </h4>
               </div>
-              <p> It's hard to move fast if you can't find anything. Centralize all your knowledge in Notion. </p>
+              <p> It's hard to move fast if you can't find anything. Centralize all your knowledge in Datagram. </p>
               <button class = "explore"> Explore <img src = {redarr} alt = "open-book" width = {20} />  </button>
               <img src = {wikill} alt = "open-book" width = {200} class = "wikill" />
             </div>
@@ -67,9 +68,9 @@ const Home = () => {
             <div class = "wiki">
               <div class = "flex"> 
                 <img src = {doc} alt = "open-book" width = {50} />
-                <h4>  Docs </h4>
+                <h4>  Events </h4>
               </div>
-              <p> Simple. Powerful. Beautiful. Communicate more efficiently with next generation docs. </p>
+              <p> Simple. Powerful. Beautiful. Schedule and manage your tasks efficiently. </p>
               <button class = "explore-yell"> Explore <img src = {yellarr} alt = "open-book" width = {20} />  </button>
               <img src = {docill} alt = "open-book" width = {200} class = "wikill" />
             </div>
@@ -81,9 +82,9 @@ const Home = () => {
             <div class = "wiki">
               <div class = "flex"> 
                 <img src = {git} alt = "open-book" width = {50} />
-                <h4>  Projects </h4>
+                <h4>  Data Visualization </h4>
               </div>
-              <p> Manage any type of project more efficiently. No separate, clunky system. </p>
+              <p> Manage any type of data more efficiently. No separate, clunky system. </p>
               <button class = "explore-blu"> Explore <img src = {bluearr} alt = "open-book" width = {20} />  </button>
               <img src = {projill} alt = "open-book" width = {200} class = "wikill" />
             </div>
@@ -96,7 +97,7 @@ const Home = () => {
             <p> Play around with it first. Pay and add your team later. </p>
           </div>
           <Link to = "/Login" > 
-          <button className='login'> Get Notion free 
+          <button className='login'> Get Datagram free 
             <img src = {arrow} alt = "open-book" width = {20} class = "arr" /> 
           </button>
           </Link>

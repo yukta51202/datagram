@@ -10,39 +10,52 @@ import Button from '@mui/material/Button';
 import GoogleIcon from '@mui/icons-material/Google';
 import TextField from '@mui/material/TextField';
 import { Link } from '@mui/material'
+// import { useHistory } from 'react-router-dom'
 
 const Register = () => {
 
-  const [values,setValues] = useState({
-    name:"",
-    email:"",
-    password:"",
-  });
+  // const history = useHistory()
 
-  const toastOptions = {
-    position: 'top-right',
-    autoClose: 4000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: 'light',
-  }
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
 
-  const handleChange = (event) => {
-    setValues ({...values, [event.target.name]: event.target.value});
-  }
+  async function handleSubmit (event) {
+		event.preventDefault()
 
-  const handleSubmit = (event) => {
-    
-  }
+		const response = await fetch('http://localhost:2000/api/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name,
+				email,
+				password,
+			}),
+		})
+
+		const data = await response.json()
+
+		if (data.status === 'ok') {
+			window.location.href = '/Login'
+		}
+	}
 
   function handleValidation() {
-    const{name, password, email} = values;
-
+    const toastOptions = {
+      position: 'top-right',
+      autoClose: 4000,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'light',
+    }
+  
     if(name === "" && email === "" && password === ""){
       toast.error("Details are required!", toastOptions);
       return false;
     }
-    if(email === "" && password === ""){
+    else if(email === "" && password === ""){
       toast.error("Details are required!", toastOptions);
       return false;
     }
@@ -52,13 +65,13 @@ const Register = () => {
       return false;
     } 
 
-    if(email === ""){
+    else if(email === ""){
       toast.error("Email is required!", toastOptions);
       return false;
     }
 
-    if(name === ""){
-      toast.error("Email is required!", toastOptions);
+    else if(name === ""){
+      toast.error("Name is required!", toastOptions);
       return false;
     }
 
@@ -82,30 +95,36 @@ const Register = () => {
                     autoFocus
                     margin="dense"
                     id="name"
+                    name='name'
                     placeholder='Name'
                     type="text"
                     fullWidth
                     variant="outlined"
+                    onChange={(e) => setName(e.target.value)}
                   />
                   <TextField
                     required
                     autoFocus
                     margin="dense"
+                    name='email'
                     id="email"
                     placeholder='Email'
                     type="email"
                     fullWidth
                     variant="outlined"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <TextField
                     required
                     autoFocus
                     margin="dense"
+                    name='password'
                     id="password"
                     placeholder='Password'
                     type="password"
                     fullWidth
                     variant="outlined"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <TextField
                     required
@@ -117,7 +136,7 @@ const Register = () => {
                     fullWidth
                     variant="outlined"
                   />
-                    <Button variant="contained" onClick={handleValidation}> Sign Up </Button>  
+                    <Button variant="contained" onClick={handleValidation} type='submit'> Sign Up </Button>  
                     <Button variant="contained" startIcon={<GoogleIcon />}> Sign up with Google </Button>               
                 </form>
                 <div class = "msg">

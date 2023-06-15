@@ -13,51 +13,54 @@ import { Link } from '@mui/material'
 
 const Login = () => {
 
-  const [values,setValues] = useState({
-    name:"",
-    email:"",
-    password:"",
-  });
+  const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
 
-  const toastOptions = {
-    position: 'top-right',
-    autoClose: 4000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: 'light',
-  }
+	async function handleSubmit(event) {
+		event.preventDefault()
 
-  const handleChange = (event) => {
-    setValues ({...values, [event.target.name]: event.target.value});
-  }
+		const response = await fetch('http://localhost:2000/api/login', {
+      method: 'POST',
+      headers: {
+				'Content-Type': 'application/json',
+			},	
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		})
 
-  const handleSubmit = (event) => {
-    
-  }
+		const data = await response.json()
+
+		if (data.user) {
+			localStorage.setItem('token', data.user)
+			alert('Login successful')
+			window.location.href = '/dashboard'
+		} else {
+			alert('Please check your email and password')
+		}
+	}
 
   function handleValidation() {
-    const{name, password, email} = values;
-
-    if(name === "" && email === "" && password === ""){
-      toast.error("Details are required!", toastOptions);
-      return false;
+    const toastOptions = {
+      position: 'top-right',
+      autoClose: 4000,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'light',
     }
+
     if(email === "" && password === ""){
       toast.error("Details are required!", toastOptions);
       return false;
     }
 
-    if(password === ""){
+    else if(password === ""){
       toast.error("Password is required!", toastOptions);
       return false;
     } 
 
-    if(email === ""){
-      toast.error("Email is required!", toastOptions);
-      return false;
-    }
-
-    if(name === ""){
+    else if(email === ""){
       toast.error("Email is required!", toastOptions);
       return false;
     }
@@ -82,10 +85,12 @@ const Login = () => {
                     autoFocus
                     margin="dense"
                     id="email"
+                    name='email'
                     placeholder='Email'
                     type="email"
                     fullWidth
                     variant="outlined"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <TextField
                     required
@@ -95,9 +100,11 @@ const Login = () => {
                     placeholder='Password'
                     type="password"
                     fullWidth
+                    name='password'
                     variant="outlined"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
-                    <Button variant="contained" onClick={handleValidation}> Login </Button>   
+                    <Button variant="contained" onClick={handleValidation} type = "submit"> Login </Button>   
                     <Button variant="contained" startIcon={<GoogleIcon />}> Login with Google </Button>          
                 </form>
                 <div class = "msg">
