@@ -20,6 +20,8 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import dashboard from '../assets/dashboard.jpg'
+import Button from '@mui/material/Button';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Home = () => {
   return (
@@ -29,14 +31,16 @@ const Home = () => {
         <div class = "center">
           <div class = "Banner">
             <div class = "Head">
-              <h1> See your <img src = {data} alt = "database" width = {70} /> data come to life:&nbsp; 
-              Visualize <img src = {visualize} alt = "database" width = {70} />, and &nbsp;
-              <img src = {analyze} alt = "database" width = {80} id = "an" /> Analyze. </h1>
-              <p> Datagram is where, better, faster work happens. <br /><br />
-              <Link to = "/Register" > 
-                <button> Get Datagram free 
-                  <img src = {arrow} alt = "open-book" width = {20} class = "arr" /> 
-                </button> 
+              <h1>
+                See your <span><img src = {data} class = "hero" alt = "data" width = {60} />data come to life: </span>
+                <span><img src = {visualize} class = "hero" alt = "visual" width = {60} />Visualize, and </span>
+                <span><img src = {analyze} alt = "analyze" width = {60} id = "an" />Analyze. </span>
+              </h1>
+              <p> Datagram is where, better, faster work happens! <br />
+              <Link to = "/Login" > 
+              <Button variant="contained" endIcon={<ArrowForwardIcon />}>
+                Try Datagram
+              </Button> 
               </Link>
               </p>
             </div>
@@ -57,7 +61,9 @@ const Home = () => {
                 <h4>  Wikis </h4>
               </div>
               <p> It's hard to move fast if you can't find anything. Centralize all your knowledge in Datagram. </p>
-              <button class = "explore"> Explore <img src = {redarr} alt = "open-book" width = {20} />  </button>
+              <Button variant = "contained" className = "exp" endIcon={<ArrowForwardIcon />}>
+                Explore
+              </Button> 
               <img src = {wikill} alt = "open-book" width = {200} class = "wikill" />
             </div>
             <div class = "wiki-image">
@@ -113,35 +119,56 @@ const Home = () => {
 
 const Container = styled.div`
 .center{
-  max-width: 780px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 h1{
-  margin-top: 65px;
-  font-size: 75px;
-  font-family: 'Roboto';
-  font-weight: 900;
+  margin-top: 30px;
+  font-size: 72px;
+  font-family: Raleway;
   text-align: center;
-  line-height: 0.9em;
+  line-height: 1em;
+  max-width: 1000px;
+}
+
+.hero{
+  vertical-align: baseline;
+  aspect-ratio: 1;
 }
 
 .Head p{
-  font-family: 'Roboto';
-  font-size: 30px;
+  font-size: 27px;
+  font-family: Raleway;
+  font-weight: 600;
   text-align: center;
-  margin: -20px 150px 10px 100px;
+  margin: -30px 80px 5px 70px;
 }
 
 p button{
+  margin-top: 20px;
   background-color : black;
   border: none;
-  border-radius : 10px;
-  font-family : Roboto;
-  font-size : 18px;
+  font-family: Raleway;
+  border-radius : 8px;
+  font-size : 15px;
+  font-weight: 600;
   padding : 8px 10px;
   color: white;
   text-align : center;
+}
+
+p button:hover{
+  background-color : #1b263b;
+}
+
+.exp{
+  color: white;
+  background-color : #d90429;
+  align-items: center;
+  font-size: 14px;
+  font-family: Raleway;
+  font-weight: 600;
 }
 
 .arr{
@@ -165,10 +192,11 @@ p button{
 }
 
 h3{
-  margin: 100px 150px 10px 100px;
-  font-size: 45px;
-  font-family: 'Roboto';
+  margin: 60px 170px 5px 170px;
+  font-size: 40px;
+  font-family: 'Montserrat';
   text-align: center;
+  font-weight: 600;
 }
 
 .wiki{
@@ -181,14 +209,18 @@ h3{
 }
 
 .wiki h4{
-  font-size: 30px; 
+  font-size: 28px; 
   margin-left: 10px;
+  font-family: 'Raleway';
+  font-weight: 800;
 }
 
 .wiki p{
-  font-size: 20px; 
+  font-size: 18px; 
   max-width: 260px;
   text-align: justify;
+  font-family: 'Montserrat';
+  font-weight: 600;
 }
 
 .flex{

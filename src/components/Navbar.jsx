@@ -1,12 +1,12 @@
 import React from 'react'
 import logo from '../assets/d-logo.png'
 import styled from 'styled-components'
-import { Link, useLocation } from 'react-router-dom'
-import expand from '../assets/expand.svg'
+import { Link } from 'react-router-dom'
 import wiki from '../assets/wiki.svg'
 import page from '../assets/page.svg'
-import ai from '../assets/ai.svg'
 import target from '../assets/target.svg'
+import Button from '@mui/material/Button';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Navbar = () => {
   
@@ -18,18 +18,16 @@ const Navbar = () => {
       </div>
       <div className = 'menu'>  
         <div className = 'dropdown'>
-          <button className = 'dropbtn'> 
-            <div class = "product"> 
-              Product
-              <img src = {expand} alt = "Expand" width = {15}/>
-            </div>
+            <Button className = "dropbtn" endIcon={<ExpandMoreIcon />}>
+                Product
+              </Button> 
             <div className = 'dropdown-content'>
               <div className = 'Wiki'> 
                 <a href = ''> 
                 <div class = "flex"> 
                   <img src = {wiki} alt = "open-book" width = {40} />
                   <div class = "flex-content">
-                    <div> Wikis </div>
+                    <div> Notes </div>
                   </div>
                 </div>
                 </a>
@@ -39,7 +37,7 @@ const Navbar = () => {
                 <div class = "flex"> 
                   <img src = {target} alt = "open-book" width = {40} />
                   <div class = "flex-content">
-                    <div> Projects </div>
+                    <div> Events </div>
                   </div>
                 </div>
                 </a>
@@ -49,30 +47,21 @@ const Navbar = () => {
                 <div class = "flex"> 
                   <img src = {page} alt = "open-book" width = {40} />
                   <div class = "flex-content">
-                    <div> Docs </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-              <div className = 'Wiki'> 
-                <a href = ''> 
-                <div class = "flex"> 
-                  <img src = {ai} alt = "open-book" width = {40} />
-                  <div class = "flex-content">
-                    <div> Notion AI </div>
+                    <div> Data </div>
                   </div>
                 </div>
                 </a>
               </div>
             </div>
-          </button>
         </div>
-        <div className = 'dropdown'>
-        <button className = 'dropbtn'> Pricing </button>
-        </div>
-        <div> 
+        <Button className = "dropbtn">
+          Pricing
+        </Button>
+        <div class = "btn"> 
           <Link to = "/Login" > 
-            <button className='login'> Try Datagram free </button>
+              <Button variant="contained">
+                Try Datagram
+              </Button>
             </Link>
         </div>
       </div>
@@ -85,7 +74,7 @@ const Container = styled.div`
   .nav{
     display : flex;
     justify-content : space-between;
-    margin-top : 10px;
+    margin-top : 0px;
   }
 
   .logo{
@@ -98,29 +87,27 @@ const Container = styled.div`
     justify-content : space-between;
     margin-right : 20px;
     align-items : center;
+    font-family : 'Raleway';
+    font-weight : 600;
   }
 
   /* Dropdown Button */
   .dropbtn {
     background-color : white;
-    font-size: 18px;
+    font-size: 17px;
     padding : 10px;
-    font-family : 'Roboto';
+    font-family : 'Raleway';
+    font-weight : 600;
     border: none;
     outline: none;
-  }
-
-  .product img{
-    padding-left: 5px;
-    padding-top: 2px;
   }
 
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
-    top: 10.5%;
-    left: 85%;
+    top: 9.5%;
+    left: 82.5%;
     right: auto;
     transform: translateX(-50%);
     padding: 5px;
@@ -133,7 +120,7 @@ const Container = styled.div`
   .dropdown-content a {
     color: black;
     padding : 10px;
-    font-family : "Roboto";
+    font-family : "Raleway";
     font-size : 18px;
     text-decoration: none;
     display: block;
@@ -175,6 +162,19 @@ const Container = styled.div`
     padding-left: 25px;
     padding-top: 9px;
     font-size: 18px;
+  }
+
+  .btn button{
+    background-color : black;
+    border: none;
+    font-family: Raleway;
+    border-radius : 5px;
+    font-size : 14px;
+    font-weight: 600;
+    padding : 6px 11px;
+    color: white;
+    text-align : center;
+    margin-left: 5px;
   }
 `
 
