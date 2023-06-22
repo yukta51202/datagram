@@ -77,7 +77,9 @@ const Home = () => {
                 <h4>  Events </h4>
               </div>
               <p> Simple. Powerful. Beautiful. Schedule and manage your tasks efficiently. </p>
-              <button class = "explore-yell"> Explore <img src = {yellarr} alt = "open-book" width = {20} />  </button>
+              <Button variant = "contained" className = "exp-yell" endIcon={<ArrowForwardIcon />}>
+                Explore
+              </Button> 
               <img src = {docill} alt = "open-book" width = {200} class = "wikill" />
             </div>
             <div class = "wiki-image">
@@ -91,7 +93,9 @@ const Home = () => {
                 <h4>  Data Visualization </h4>
               </div>
               <p> Manage any type of data more efficiently. No separate, clunky system. </p>
-              <button class = "explore-blu"> Explore <img src = {bluearr} alt = "open-book" width = {20} />  </button>
+              <Button variant = "contained" className = "exp-blu" endIcon={<ArrowForwardIcon />}>
+                Explore
+              </Button> 
               <img src = {projill} alt = "open-book" width = {200} class = "wikill" />
             </div>
             <div class = "wiki-image">
@@ -102,11 +106,13 @@ const Home = () => {
             <h3> Get started for free. </h3>
             <p> Play around with it first. Pay and add your team later. </p>
           </div>
-          <Link to = "/Login" > 
-          <button className='login'> Get Datagram free 
-            <img src = {arrow} alt = "open-book" width = {20} class = "arr" /> 
-          </button>
-          </Link>
+          <div class = "btn"> 
+            <Link to = "/Login" > 
+            <Button variant="contained" endIcon={<ArrowForwardIcon />}>
+                  Try Datagram
+                </Button> 
+            </Link>
+          </div>
           <div>
             <img src = {foot} alt = "open-book" width = {800} />
           </div>
@@ -130,6 +136,20 @@ h1{
   text-align: center;
   line-height: 1em;
   max-width: 1000px;
+}
+
+.btn Button{
+  margin-top: 20px;
+  background-color : black;
+  border: none;
+  font-family: Raleway;
+  border-radius : 8px;
+  font-size : 15px;
+  font-weight: 600;
+  padding : 8px 10px;
+  color: white;
+  text-align : center;
+  margin-left : 300px;
 }
 
 .hero{
@@ -168,7 +188,22 @@ p button:hover{
   align-items: center;
   font-size: 14px;
   font-family: Raleway;
-  font-weight: 600;
+}
+
+.exp-yell{
+  color: white;
+  background-color : #ffc300;
+  align-items: center;
+  font-size: 14px;
+  font-family: Raleway;
+}
+
+.exp-blu{
+  color: white;
+  background-color : #00a7e1;
+  align-items: center;
+  font-size: 14px;
+  font-family: Raleway;
 }
 
 .arr{
@@ -220,7 +255,6 @@ h3{
   max-width: 260px;
   text-align: justify;
   font-family: 'Montserrat';
-  font-weight: 600;
 }
 
 .flex{
@@ -242,39 +276,15 @@ h3{
   margin-top: -30px;
 }
 
-.explore{
-  color: red;
-  align-items: center;
-  border: none;
-  background-color: white;
-  font-size: 20px;
-}
-
-.explore-yell{
-  color: #ffc300;
-  align-items: center;
-  border: none;
-  background-color: white;
-  font-size: 20px;
-}
-
-.explore-blu{
-  color: #00a7e1;
-  align-items: center;
-  border: none;
-  background-color: white;
-  font-size: 20px;
-}
-
 .free p{
-  margin: 20px 150px 10px 100px;
+  margin: 20px 0px 20px 120px;
   font-size: 22px;
 }
 
 .free h3{
-  margin: 100px 150px 10px 100px;
+  margin: 50px 10px 5px 20px;
   font-size: 55px;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
   text-align: center;
 }
 
@@ -282,7 +292,7 @@ h3{
   background-color : black;
   border: none;
   border-radius : 10px;
-  font-family : Roboto;
+  font-family : Raleway;
   font-size : 18px;
   padding : 8px 10px;
   color: white;

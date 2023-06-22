@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@600;700;800&family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 html,
 body,
@@ -26,9 +27,9 @@ body,
   }
 
   ::-webkit-scrollbar-thumb{
-    background: #888;
+    background: #c2c0c0;
   }
 
   ::-webkit-scrollbar-track:hover{
-    background: #555;
+    background: #989797;
   }

@@ -22,6 +22,7 @@ import Login from "./components/Login"
 
 function App() {
   const [theme, colorMode] = useMode();
+
   return (
     <colorModeContext.Provider value = {colorMode}>
       <ThemeProvider theme = {theme}>

@@ -6,7 +6,6 @@ import { mockDataTeam } from "../../data/mockData";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
-import Header from "../../components/Header";
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { styled } from '@mui/material/styles';
@@ -18,6 +17,7 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Topbar from "../global/Topbar";
 
 const Team = () => {
   const theme = useTheme();
@@ -106,10 +106,20 @@ const Team = () => {
   ];
 
   return (
-    <Box m="20px">
+    <Box marginTop={10}
+    marginLeft={14}
+    marginRight={4}>
       <Box display = "flex" justifyContent = "space-between" alignItems = "center">
-        <Header title="TEAM MEMBERS" />
-        <AddButton onClick = {handleClickOpen} variant="contained" endIcon={<AddIcon />}> 
+        <Topbar title="Team" />
+        <AddButton 
+        sx = {{
+          backgroundColor: colors.blueAccent[500],
+            color: "white",
+            fontSize: "14px",
+            fontWeight: "bold",
+            padding: "7px 20px",
+        }}
+        onClick = {handleClickOpen} variant="contained" endIcon={<AddIcon />}> 
           Add Member
         </AddButton>
         <Dialog open = {showModal} onClose = {handleClose} >

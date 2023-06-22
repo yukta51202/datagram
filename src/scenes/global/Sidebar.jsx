@@ -16,8 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-
-const withouSidebarRoutes = ["/", "/Register"];
+import WidgetsIcon from '@mui/icons-material/Widgets';
 
 // title, to, icon, selected, setSelected are the properties
 // this is crreated so that we need not write this coe for every item again and again
@@ -26,18 +25,39 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <MenuItem
+    <Box
+      display={"inline-flex"}
+      flexDirection={"column"}
+      maxWidth={80}>
+      <MenuItem
       // set the selected item as active
       active={selected === title}
       style={{
-        color: colors.grey[100],
+        fontFamily: "Raleway",
+        size: 50,
+        color: colors.grey[300],
       }}
       onClick={() => setSelected(title)}
       icon={icon}
-    >
-      <Typography>{title}</Typography>
+      >
       <Link to={to} />
     </MenuItem>
+    <Typography
+    align="center"
+    sx={{
+    fontFamily: "Raleway",
+    fontSize: "12px",
+    fontWeight: 500,
+    color: colors.grey[300],
+    marginTop: "-8px",
+    marginLeft: "-5px",
+    marginBottom: "10px"
+  }}
+>
+  {title}
+</Typography>
+    </Box>
+    
   );
 };
 
@@ -56,6 +76,13 @@ const Sidebar = () => {
   
     return (
       <Box
+        position="fixed" // Set the position to fixed
+        top={0} // Position it at the top of the viewport
+        left={0} // Position it at the left of the viewport
+        right={0} // Position it at the right of the viewport
+        bottom={1}
+        display = "flex" 
+        justifyContent = "space-between"
         // overriding the css properties of following items
         sx={{
           "& .pro-sidebar-inner": {
@@ -79,11 +106,12 @@ const Sidebar = () => {
           <Menu iconShape="square">
             {/* LOGO AND MENU ICON */}
             <MenuItem
-              onClick={() => setIsCollapsed(!isCollapsed)}
-              icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+              onClick={() => setIsCollapsed(isCollapsed)}
+              icon={isCollapsed ? <WidgetsIcon /> : undefined}
               style={{
-                margin: "10px 0 20px 0",
-                color: colors.grey[100],
+                marginTop : "-5px",
+                marginBottom : "7px",
+                color: colors.grey[300],
               }}
             >
               {!isCollapsed && (
@@ -91,25 +119,8 @@ const Sidebar = () => {
                   display="flex"
                   justifyContent="space-between"
                   alignItems="center"
-                  ml="20px"
+                  ml="10px"
                 >
-                  <Box display="flex" justifyContent="center" alignItems="center">
-                  <img
-                    alt="profile-user"
-                    width="40px"
-                    height="40px"
-                    src={`../../assets/user.png`}
-                    style={{ cursor: "pointer", borderRadius: "50%" }}
-                  />
-                <Typography
-                    variant="h6"
-                    color={colors.grey[100]}
-                    fontWeight="400"
-                    sx={{ m: "10px 0 7px 10px" }}
-                  >
-                    Yukta Malhotra
-                  </Typography>
-                </Box>
                   <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                     <MenuOutlinedIcon />
                   </IconButton>
@@ -120,14 +131,14 @@ const Sidebar = () => {
             {/* Menu Items */}
             <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Dashboard"
+              title="Home"
               to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Manage Team"
+              title="Team"
               to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
@@ -141,7 +152,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Calendar"
+              title="Tasks"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
