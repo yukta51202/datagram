@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -23,10 +23,18 @@ const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [showModal, setShowModal] = useState(false);
-  const [access, setAccess] = useState('Admin');
+
+  const [data, setData] = useState([]);
+
+  const [email, setEmail] = useState('')
+	const [id, setId] = useState('')
+	const [name, setName] = useState('')
+	const [age, setAge] = useState('')
+	const [phone, setPhone] = useState('')
+	const [accessLevel, setAccessLevel] = useState('Admin')
 
   const handleChange = (event) => {
-    setAccess(event.target.value);
+    setAccessLevel(event.target.value);
   };
 
   const handleClickOpen = () => {
@@ -37,13 +45,65 @@ const Team = () => {
     setShowModal(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await fetch("http://localhost:2000/api/members", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          email,
+          age,
+          phone,
+          accessLevel,
+        }),
+      });
+
+      if (response.ok) {
+        // Handle success
+        // Show a success message, clear the form, update the grid, etc.
+      } else {
+        // Handle error
+        // Show an error message, retry logic, etc.
+      }
+    } catch (error) {
+      // Handle error
+      // Show an error message, retry logic, etc.
+    }
 
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:2000/api/members", {
+          method: 'GET', 
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          const jsonData = await response.json();
+          console.log(jsonData);
+          setData(jsonData);
+        } else {
+          // Handle error
+        }
+      } catch (error) {
+        // Handle error
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   const columns = [
     { 
-      field: "registrarId", 
+      field: "id", 
       headerName: "ID" 
     },
     {
@@ -85,7 +145,7 @@ const Team = () => {
             justifyContent="center"
             // set the color as per the access
             backgroundColor={
-              access === "admin"
+              accessLevel === "admin"
                 ? colors.redAccent[500]
                 : access === "manager"
                 ? colors.greenAccent[500]
@@ -93,11 +153,11 @@ const Team = () => {
             }
             borderRadius="4px"
           >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
+            {accessLevel === "admin" && <AdminPanelSettingsOutlinedIcon />}
+            {accessLevel === "manager" && <SecurityOutlinedIcon />}
+            {accessLevel === "user" && <LockOpenOutlinedIcon />}
             <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
+              {accessLevel}
             </Typography>
           </Box>
         );
@@ -142,6 +202,7 @@ const Team = () => {
                   type="number"
                   fullWidth
                   variant="outlined"
+                  onChange={(e) => setId(e.target.value)}
               />
               <TextField
                   required
@@ -153,6 +214,7 @@ const Team = () => {
                   type="text"
                   fullWidth
                   variant="outlined"
+                  onChange={(e) => setName(e.target.value)}
               />
               <TextField
                   required
@@ -164,6 +226,7 @@ const Team = () => {
                   type="email"
                   fullWidth
                   variant="outlined"
+                  onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                   required
@@ -175,6 +238,7 @@ const Team = () => {
                   type="number"
                   fullWidth
                   variant="outlined"
+                  onChange={(e) => setAge(e.target.value)}
               />
               <TextField
                   required
@@ -186,10 +250,11 @@ const Team = () => {
                   type="number"
                   fullWidth
                   variant="outlined"
+                  onChange={(e) => setPhone(e.target.value)}
               />
               <Select
                  id="access"
-                 value={access}
+                 value={accessLevel}
                  label="Acess Level"
                  placeholder="Access"
                  defaultValue="User"
@@ -248,11 +313,18 @@ const Team = () => {
           }
         }}
       >
-        <DataGrid 
+        {/* <DataGrid 
             checkboxSelection
             rows={mockDataTeam} 
             columns={columns}
-            components={{ Toolbar: GridToolbar }} />
+            components={{ Toolbar: GridToolbar }} /> */}
+        <DataGrid
+            checkboxSelection
+            rows={data}
+            columns={columns}
+            components={{ Toolbar: GridToolbar }}
+          />
+
       </Box>
     </Box>
   );

@@ -1,6 +1,6 @@
 const connectToMongo = require('./db');
 connectToMongo();
-const User = require('./models/user.model')
+const { User, Member } = require('./models/user.model');
 
 const express = require('express')
 const app = express()
@@ -54,6 +54,34 @@ app.post('/api/register', async (req, res) => {
 		res.json({ status: 'ok' })
 	} catch (err) {
 		res.json({ status: 'error', error: 'Duplicate email' })
+	}
+})
+
+app.post('/api/members', async (req, res) => {
+	try{
+		// Extract the form values from the request body
+		const [{ id, name, email, age, phone, accessLevel }] = req.body;
+		await Member.create({
+			id,
+			name,
+			email,
+			age,
+			phone,
+			accessLevel,
+		  });
+		res.status(200).json({ message: "Member created successfully" });
+	} catch(error){
+		console.log(error);
+		res.status(500).json({ message: "Error Creating Member" });	
+	}
+})
+
+app.get('/api/members', async (req,res) => {
+	try{
+		res.status(200).json({ message: "Show member" });
+	} catch(error){
+		console.log(error);
+		res.status(500).json({ message: "Error showing" });	
 	}
 })
 
