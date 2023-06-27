@@ -19,6 +19,16 @@ import Pie from "./scenes/pie"
 import Geography from "./scenes/geography"
 import GeographyChart from "./components/GeographyChart"
 import Login from "./components/Login"
+import Create from "./scenes/dashboard/create";
+import Chart from "./scenes/bar/chart";
+import Chart1 from "./scenes/bar/chart1";
+import PieRend from "./scenes/pie/chart";
+import PieRend1 from "./scenes/pie/chart1";
+import LineRend from "./scenes/line/chart";
+import LineRend1 from "./scenes/line/chart1";
+import GeoRend from "./scenes/geography/chart";
+import Workspace from "./scenes/workspace/workspace";
+import Case1 from "./scenes/dashboard/case1";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -34,19 +44,25 @@ function App() {
               <Routes>
                 <Route path = "/" element = {<Home />} />
                 <Route path = "/Login" element = {<Login />} />
+                <Route path = "/create" element = {<Create />} />
                 <Route path = "/Register" element = {<Register />} /> 
-                <Route path = "/dashboard" element = {<Dashboard />} />
+                <Route path = "/dashboard" element = {<Dashboard />} /> 
                 <Route path = "/team" element = {<Team />} />
                 <Route path = "/add" element = {<Add />} />
                 <Route path = "/bar" element = {<Bar />} />
-                <Route path = "/barChart" element = {<BarChart />} />
-                <Route path = "/pieChart" element = {<PieChart />} />
+                <Route path = "/barChart" element = {<Chart />} />
+                <Route path = "/barChart1" element = {<Chart1 />} />
+                <Route path = "/pieChart" element = {<PieRend />} />
+                <Route path = "/pieChart1" element = {<PieRend1 />} />
                 <Route path = "/pie" element = {<Pie />} />
                 <Route path = "/line" element = {<Line />} />
-                <Route path = "/lineChart" element = {<LineChart />} />
-                <Route path = "/geographyChart" element = {<GeographyChart />} />
+                <Route path = "/lineChart" element = {<LineRend />} />
+                <Route path = "/lineChart1" element = {<LineRend1 />} />
+                <Route path = "/geographyChart" element = {<GeoRend />} />
                 <Route path = "/geography" element = {<Geography />} />
                 <Route path = "/calendar" element = {<Calendar />} />
+                <Route path = "/workspace" element = {<Workspace />} />
+                <Route path = "/case1" element = {<Case1 />} />
               </Routes>
             </main>
           </div>

@@ -1,9 +1,9 @@
 import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
-import { pieChartData as data } from "../data/mock";
+import { mockPieData as data } from "../data/mockData";
 
-const PieChart = () => {
+const PieChart1 = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -106,4 +106,4 @@ const PieChart = () => {
   );
 };
 
-export default PieChart;
+export default PieChart1;

@@ -31,7 +31,7 @@ const Team = () => {
 	const [name, setName] = useState('')
 	const [age, setAge] = useState('')
 	const [phone, setPhone] = useState('')
-	const [accessLevel, setAccessLevel] = useState('Admin')
+	const [accessLevel, setAccessLevel] = useState('')
 
   const handleChange = (event) => {
     setAccessLevel(event.target.value);
@@ -46,7 +46,7 @@ const Team = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
       const response = await fetch("http://localhost:2000/api/members", {
         method: "POST",
@@ -62,20 +62,46 @@ const Team = () => {
           accessLevel,
         }),
       });
-
+  
       if (response.ok) {
-        // Handle success
-        // Show a success message, clear the form, update the grid, etc.
+        // Clear the form fields
+        setId("");
+        setName("");
+        setEmail("");
+        setAge("");
+        setPhone("");
+        setAccessLevel("Admin");
+  
+        // Fetch the updated data and update the state
+        const fetchData = async () => {
+          try {
+            const response = await fetch("http://localhost:2000/api/members", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            if (response.ok) {
+              const jsonData = await response.json();
+              setData(jsonData);
+            } else {
+              // Handle error
+            }
+          } catch (error) {
+            // Handle error
+          }
+        };
+  
+        fetchData();
       } else {
         // Handle error
-        // Show an error message, retry logic, etc.
       }
     } catch (error) {
       // Handle error
-      // Show an error message, retry logic, etc.
     }
-
-  }
+    handleClose();
+  };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -135,7 +161,7 @@ const Team = () => {
       headerName: "Access Level",
       flex: 1,
       // customize the roles of the user
-      renderCell: ({ row: { access } }) => {
+      renderCell: ({ row: { accessLevel } }) => {
         return (
           <Box
             width="60%"
@@ -147,7 +173,7 @@ const Team = () => {
             backgroundColor={
               accessLevel === "admin"
                 ? colors.redAccent[500]
-                : access === "manager"
+                : accessLevel === "manager"
                 ? colors.greenAccent[500]
                 : colors.redAccent[300]
             }
@@ -197,7 +223,6 @@ const Team = () => {
                   autoFocus
                   margin="dense"
                   id="id"
-                  defaultValue="12345"
                   label="ID"
                   type="number"
                   fullWidth
@@ -209,7 +234,6 @@ const Team = () => {
                   autoFocus
                   margin="dense"
                   id="name"
-                  defaultValue="Stefan Salvatore"
                   label="Name"
                   type="text"
                   fullWidth
@@ -221,7 +245,6 @@ const Team = () => {
                   autoFocus
                   margin="dense"
                   id="email"
-                  defaultValue="stefan@xyz.com"
                   label="Email"
                   type="email"
                   fullWidth
@@ -233,7 +256,6 @@ const Team = () => {
                   autoFocus
                   margin="dense"
                   id="age"
-                  defaultValue="25"
                   label="Age"
                   type="number"
                   fullWidth
@@ -245,7 +267,6 @@ const Team = () => {
                   autoFocus
                   margin="dense"
                   id="phone"
-                  defaultValue="9667314916"
                   label="Phone No."
                   type="number"
                   fullWidth
@@ -280,7 +301,7 @@ const Team = () => {
         </Dialog>
       </Box>
       <Box
-        m="0px 0 0 0"
+        m="20px 0 0 0"
         height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
@@ -322,7 +343,8 @@ const Team = () => {
             checkboxSelection
             rows={data}
             columns={columns}
-            components={{ Toolbar: GridToolbar }}
+            components={{ Toolbar: GridToolbar }
+            }
           />
 
       </Box>

@@ -9,7 +9,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { colorModeContext, tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
@@ -17,6 +17,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 
 // title, to, icon, selected, setSelected are the properties
 // this is crreated so that we need not write this coe for every item again and again
@@ -138,16 +139,16 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              title="Create"
+              to="/create"
+              icon={<AddCircleOutlineOutlinedIcon  />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Notes"
-              to="/notes"
-              icon={<DescriptionOutlinedIcon />}
+              title="Team"
+              to="/team"
+              icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -183,6 +184,13 @@ const Sidebar = () => {
               title="Geography Chart"
               to="/geography"
               icon={<MapOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Workspace"
+              to="/workspace"
+              icon={<WorkOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

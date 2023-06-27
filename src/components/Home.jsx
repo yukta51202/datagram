@@ -2,24 +2,22 @@ import React from 'react'
 import styled from 'styled-components'
 import doc from '../assets/doc.svg'
 import git from '../assets/git.svg'
-import arrow from '../assets/arrow.svg'
 import ill1 from '../assets/ill1.svg'
-import Roadmap from '../assets/Roadmap.png'
 import data from '../assets/data.svg'
 import visualize from '../assets/visulalize.svg'
 import wiki from '../assets/wiki.svg'
-import redarr from '../assets/red-arrow.svg'
-import yellarr from '../assets/yell-arr.svg'
 import wikill from '../assets/wiki-illo.avif'
 import docill from '../assets/docs-illo.avif'
 import projill from '../assets/projects-illo.avif'
-import bluearr from '../assets/bluearr.svg'
 import analyze from '../assets/analyze.svg'
 import foot from '../assets/foot.svg'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import dashboard from '../assets/dashboard.jpg'
+import calendar from '../assets/calendar.jpg'
+import report from '../assets/report.jpg'
+import team from '../assets/team.jpg'
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -49,7 +47,7 @@ const Home = () => {
             <img src = {ill1} alt = "open-book" width = {800} class = "ill" />
           </div>
           <div class = "roadmap">
-            <img src = {dashboard} alt = "open-book" width = {1000} />
+            <img src = {dashboard} alt = "Dashboard" width = {1000} />
           </div>
           <div> 
             <h3> Finally, all your work in one place! </h3>
@@ -58,16 +56,16 @@ const Home = () => {
             <div class = "wiki">
               <div class = "flex"> 
                 <img src = {wiki} alt = "open-book" width = {50} />
-                <h4>  Wikis </h4>
+                <h4>  Teams </h4>
               </div>
-              <p> It's hard to move fast if you can't find anything. Centralize all your knowledge in Datagram. </p>
+              <p> Manage all your team members and their roles in Datagram. </p>
               <Button variant = "contained" className = "exp" endIcon={<ArrowForwardIcon />}>
                 Explore
               </Button> 
-              <img src = {wikill} alt = "open-book" width = {200} class = "wikill" />
+              <img src = {wikill} alt = "open-book" width = {150} class = "wikill" />
             </div>
             <div class = "wiki-image">
-              <img src = {Roadmap} alt = "open-book" width = {800} />
+              <img src = {team} alt = "open-book" width = {800} height={400}/>
             </div>
           </div>
           <div class = "wikipedia">
@@ -80,10 +78,10 @@ const Home = () => {
               <Button variant = "contained" className = "exp-yell" endIcon={<ArrowForwardIcon />}>
                 Explore
               </Button> 
-              <img src = {docill} alt = "open-book" width = {200} class = "wikill" />
+              <img src = {docill} alt = "open-book" width = {150} class = "wikill" />
             </div>
             <div class = "wiki-image">
-              <img src = {Roadmap} alt = "open-book" width = {800} />
+              <img src = {calendar} alt = "Events" width = {800} height={400} />
             </div>
           </div>
           <div class = "wikipedia">
@@ -96,10 +94,10 @@ const Home = () => {
               <Button variant = "contained" className = "exp-blu" endIcon={<ArrowForwardIcon />}>
                 Explore
               </Button> 
-              <img src = {projill} alt = "open-book" width = {200} class = "wikill" />
+              <img src = {projill} alt = "open-book" width = {150} class = "wikill" />
             </div>
             <div class = "wiki-image">
-              <img src = {Roadmap} alt = "open-book" width = {800} />
+              <img src = {report} alt = "open-book" width = {800} height={400} />
             </div>
           </div>
           <div class = "free"> 
@@ -272,7 +270,7 @@ h3{
 }
 
 .wikill{
-  margin-left: 120px;
+  margin-left: 200px;
   margin-top: -30px;
 }
 

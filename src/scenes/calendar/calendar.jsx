@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
+import Topbar from "../global/Topbar";
 
 const Calendar = () => {
   const theme = useTheme();
@@ -28,6 +29,7 @@ const Calendar = () => {
   const [currentEvents, setCurrentEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
   // const [desc, setDesc] = useState('');
   // const [email, setEmail] = useState('');
 
@@ -35,32 +37,28 @@ const Calendar = () => {
     setShowModal(false);
   };
 
-  const handleSubmit = (event, selected) => {
-    event.preventDefault();
-    const calendarApi = selected.view.calendar;
-    calendarApi.unselect();
-    if(title){
+  const handleSubmit = () => {
+    if (title && selectedDate) {
+      const { dateStr, startStr, endStr, allDay } = selectedDate;
+      const calendarApi = selectedDate.view.calendar;
+      calendarApi.unselect();
+      
       calendarApi.addEvent({
-        title,
-      })
-    }
-  }
-
-  const handleDateClick = (selected) => {
-    const title = prompt("Please enter a new title for your event");
-    // setShowModal(true);
-    const calendarApi = selected.view.calendar;
-    calendarApi.unselect();
-    
-    if (title) {
-      calendarApi.addEvent({
-        id: `${selected.dateStr}-${title}`,
-        title,
-        start: selected.startStr,
-        end: selected.endStr,
-        allDay: selected.allDay,
+        id: `${dateStr}-${title}`,
+        title: title,
+        start: startStr,
+        end: endStr,
+        allDay: allDay,
       });
     }
+  
+    setShowModal(false); // Close the modal after submitting
+    setTitle(''); // Clear the title input
+  };
+
+  const handleDateClick = (selected) => {
+    setSelectedDate(selected);
+    setShowModal(true);
   };
 
 
@@ -75,8 +73,10 @@ const Calendar = () => {
   };
 
   return (
-    <Box m="20px">
-      <Header title="Calendar" subtitle="Full Calendar Interactive Page" />
+    <Box marginTop={12}
+    marginLeft={14}
+    marginRight={4}>
+      <Topbar title="Calendar" />
 
       <Box display="flex" justifyContent="space-between">
         {/* CALENDAR SIDEBAR */}
@@ -155,20 +155,18 @@ const Calendar = () => {
             </DialogTitle>
             <DialogContent>
             <TextField
-                  required
-                  autoFocus
-                  margin="dense"
-                  id="title"
-                  defaultValue="Chapter 1 Linux"
-                  label="Event Name"
-                  type="text"
-                  fullWidth
-                  variant="outlined"
-                  onChange={(event)=>{
-                    setTitle(event.target.value)
-                  }}
-              />
-              <TextField
+              required
+              autoFocus
+              margin="dense"
+              id="title"
+              value={title}
+              label="Event Name"
+              type="text"
+              fullWidth
+              variant="outlined"
+              onChange={(event) => setTitle(event.target.value)}
+            />
+              {/* <TextField
                   required
                   multiline
                   autoFocus
@@ -191,7 +189,7 @@ const Calendar = () => {
                   type="email"
                   fullWidth
                   variant="outlined"
-              />
+              /> */}
             </DialogContent>
             <DialogActions>
               <Box marginRight="17px">
@@ -200,6 +198,7 @@ const Calendar = () => {
                     endIcon={<ArrowForwardIcon />}
                     onClick={handleSubmit}
                     color="secondary"
+                    type="submit"
                     >
                     Submit
                 </Button>

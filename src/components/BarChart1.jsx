@@ -1,14 +1,14 @@
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { Data as data } from "../data/mock";
+import { mockBarData as data } from "../data/mockData";
 
-const BarChart = ({ isDashboard = false }) => {
+const BarChart1 = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   return (
-    <ResponsiveBar 
+    <ResponsiveBar
       data={data}
       theme={{
         // added
@@ -39,7 +39,7 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["Apple", "Samsung", "Xiaomi", "Realme", "OnePlus"]}
+      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
       indexBy="country"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
@@ -76,7 +76,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "Country", // changed
+        legend: isDashboard ? undefined : "country", // changed
         legendPosition: "middle",
         legendOffset: 32,
       }}
@@ -84,7 +84,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "%age users", // changed
+        legend: isDashboard ? undefined : "food", // changed
         legendPosition: "middle",
         legendOffset: -40,
       }}
@@ -127,4 +127,4 @@ const BarChart = ({ isDashboard = false }) => {
   );
 };
 
-export default BarChart;
+export default BarChart1;
