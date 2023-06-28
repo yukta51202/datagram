@@ -18,7 +18,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import { useState, useEffect } from "react";
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -39,6 +39,7 @@ const Dashboard = () => {
       <Box marginLeft={4}>
         <Topbar title="Home" />
         <Box>
+        <Link to = "/create">
         <Button 
           sx={{
             backgroundColor: colors.blueAccent[500],
@@ -50,6 +51,7 @@ const Dashboard = () => {
           variant="contained" endIcon={<AddIcon />}> 
           Add Report
         </Button>
+        </Link>
         </Box>
       </Box>
 
