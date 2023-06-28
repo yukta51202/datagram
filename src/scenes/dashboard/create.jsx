@@ -8,6 +8,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import axios from 'axios';
 import {TextField} from '@mui/material';
 import BarChart from '../../components/BarChart'
+import styled from 'styled-components';
 
 const Create = () => {
   const navigate = useNavigate(); // To navigate to the new route
@@ -15,6 +16,7 @@ const Create = () => {
   const [selectedFile, setSelectedFile] = useState(null); // State to store the selected file
   const [error, setError] = useState(null); // State to store error message
   const [chartData, setChartData] = useState(null); // State to store the formatted chart data
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,6 +56,8 @@ const Create = () => {
     event.preventDefault();
 
     if (selectedFile) {
+      setIsLoading(true);
+
       const formData = new FormData();
       formData.append('file', selectedFile, selectedFile.name);
 
@@ -65,7 +69,10 @@ const Create = () => {
         });
 
         console.log('File uploaded successfully');
-        navigate('/workspace')
+        setTimeout(() => {
+          navigate('/workspace');
+          setIsLoading(false);
+        }, 5000);
 
         const filename = response.data.filename;
         fetchData(filename);
@@ -73,6 +80,7 @@ const Create = () => {
       } catch (error) {
         console.error('Error uploading file:', error.response?.data?.message || error.message);
         setError('Error uploading file');
+        setIsLoading(false);
       }
     }
   };
@@ -161,7 +169,7 @@ const Create = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ fontSize: 20, color: 'black' }}>Submit Your Data File</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}> 
             <Box display="flex" alignItems="center">
               <Box display="flex" flexDirection="column" alignItems="flex-start" width="100%">
               <TextField label="Name" variant="outlined" fullWidth />
@@ -180,9 +188,182 @@ const Create = () => {
             </DialogActions>
           </form>
         </DialogContent>
+        {isLoading && (
+            <Overlay>
+              <PageLoader>
+                <div className="center" />
+                {[...Array(8)].map((_, index) => (
+                  <div key={index} className={`item item-${index + 1}`} />
+                ))}
+              </PageLoader>
+            </Overlay>
+          )}
       </Dialog>
     </Box>
   );
 };
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 9999;
+`;
+
+const PageLoader = styled.div`
+position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9); 
+  border-radius: 5px; 
+  z-index: 10000;
+
+  .center {
+    width: 40px;
+    height: 40px;
+    background: hsl(0, 80%, 50%);
+    border-radius: 50%;
+    animation: center 3.2s ease-in-out infinite;
+  }
+
+  .item {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: hsl(0, 80%, 50%);
+    border-radius: 50%;
+  }
+
+  .item-1 {
+    animation: anim-1 3.2s ease-in-out infinite 0s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-2 {
+    animation: anim-2 3.2s ease-in-out infinite 0.2s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-3 {
+    animation: anim-3 3.2s ease-in-out infinite 0.4s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-4 {
+    animation: anim-4 3.2s ease-in-out infinite 0.6s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-5 {
+    animation: anim-5 3.2s ease-in-out infinite 0.8s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-6 {
+    animation: anim-6 3.2s ease-in-out infinite 1s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-7 {
+    animation: anim-7 3.2s ease-in-out infinite 1.2s;
+    animation-fill-mode: backwards;
+  }
+
+  .item-8 {
+    animation: anim-8 3.2s ease-in-out infinite 1.4s;
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes anim-1 {
+    0%, 60%, 100% {
+      transform: rotate(0deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(0deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-2 {
+    0%, 60%, 100% {
+      transform: rotate(45deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(45deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-3 {
+    0%, 60%, 100% {
+      transform: rotate(90deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(90deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-4 {
+    0%, 60%, 100% {
+      transform: rotate(135deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(135deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-5 {
+     0%, 60%, 100% {
+      transform: rotate(180deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(180deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-6 {
+    0%, 60%, 100% {
+      transform: rotate(225deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(225deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-7 {
+    0%, 60%, 100% {
+      transform: rotate(270deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(270deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes anim-8 {
+    0%, 60%, 100% {
+      transform: rotate(315deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(315deg) translateX(0) scale(1.5);
+    }
+  }
+
+  @keyframes center {
+    0%, 10%, 90%, 100% {
+      transform: scale(0.7);
+    }
+    45%, 55% {
+      transform: scale(1);
+    }
+  }
+  `;
 
 export default Create;
